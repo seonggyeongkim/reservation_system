@@ -1,5 +1,7 @@
 package kr.hs.emirim.duckbill0316.reservationsystem;
 
+import android.graphics.Color;
+import android.os.SystemClock;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +13,8 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.content.*;
+
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
     Chronometer chrono;
@@ -55,6 +59,39 @@ public class MainActivity extends AppCompatActivity {
                 timePick.setVisibility(View.VISIBLE); //보이게
             }//추상 메소드
         }); //감시자 연결
+
+        butStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                chrono.setBase(SystemClock.elapsedRealtime()); //시스템의 시간을 사용할 꺼다! (어떤 시간을 설정할 것인지)
+                //현재 운영체제에서 사용되는 시간 설정
+                chrono.start();//크로노 시작!
+                chrono.setTextColor(Color.RED);//크로노미터의 글자색!
+            }
+        });
+
+        butDone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                chrono.stop();//크로노 중지!
+                chrono.setTextColor(Color.BLUE);//크로노미터의 글자색!
+                Calendar cal=Calendar.getInstance(); //추상클래스 -> 반환 메소드 .getInstance()
+                cal.setTimeInMillis(calView.getDate());
+                int year=cal.get(Calendar.YEAR); //캘린더 뷰의 연도 반환 받음!
+                int month=cal.get(Calendar.MONTH)+1; //캘린더 뷰의 달에 반환 (MONTH는 0부터!)
+                int date=cal.get(Calendar.DATE);//일 반환!
+
+               // int hour=timePick.getHour(); //타임 픽커에 시간 반환!
+               // int min=timePick.getMinute(); // 타임 픽커에 분 반환!
+
+                String dateAndTime=year+"년 "+month+"월 "+date+"일 "; /*+hour+"시 "+min+"분 */
+                textResult.setText(dateAndTime); //최종 출력
+
+            }
+        });
+
+
 
 
 
