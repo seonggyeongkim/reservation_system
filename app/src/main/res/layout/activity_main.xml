@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:format="예약에 걸린 시간 : %s"
         android:textSize="20sp"
-        android:gravity="center"/><!--layout_width="match_parent"이면, gravity="center" 효과 x-->
+        android:gravity="center"/>
     <Button
         android:id="@+id/but_start"
         android:layout_width="match_parent"
@@ -37,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/radio_time"/>
-    </>
+    </RadioGroup>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -45,17 +45,17 @@
         >
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"> <!--겹치게 하는 것-->
+            android:layout_height="wrap_content">
             <CalendarView
                 android:id="@+id/calendar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
             </CalendarView>
             <TimePicker
-                android:id="@+id/time"
+                android:id="@+id/time_pick"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="invisible"></TimePicker>
+                android:timePickerMode="spinner"></TimePicker>
         </FrameLayout>
     </LinearLayout>
     <LinearLayout
@@ -72,5 +72,4 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
-
-</>
+</LinearLayout>
