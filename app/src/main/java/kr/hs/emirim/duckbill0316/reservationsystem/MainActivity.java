@@ -34,8 +34,29 @@ public class MainActivity extends AppCompatActivity {
         calView=(CalendarView)findViewById(R.id.calendar);
         timePick=(TimePicker)findViewById(R.id.time_pick);
         textResult=(TextView)findViewById(R.id.text_result);
-        timePick.setVisibility(View.INVISIBLE);
+        timePick.setVisibility(View.INVISIBLE);//안보이게 설정
         calView.setVisibility(View.INVISIBLE);
+
+        //익명 클래스 (이름 없이 클래스를 구현 + 객체 생성) => event handler (EventLinstener (인터페이스): 감시자 / ex)Onclick)
+        //감시자(EventListener) 상속 받아서, 클래스 생성!
+
+        radioDate.setOnClickListener(new View.OnClickListener() { //인터페이스
+            @Override
+            public void onClick(View v) {
+                calView.setVisibility(View.VISIBLE); //보이게
+                timePick.setVisibility(View.INVISIBLE); //안보이게
+            }//추상 메소드
+        }); //감시자 연결
+
+        radioTime.setOnClickListener(new View.OnClickListener() { //인터페이스
+            @Override
+            public void onClick(View v) {
+                calView.setVisibility(View.INVISIBLE); //안보이게
+                timePick.setVisibility(View.VISIBLE); //보이게
+            }//추상 메소드
+        }); //감시자 연결
+
+
 
     }
 }
